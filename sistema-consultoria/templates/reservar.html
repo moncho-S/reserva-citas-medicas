@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+            Reservar cita
+{% endblock 'title' %}
+            {% block 'content' %}
+            {% if user.is_authenticated %}
+            <h1 class='text-center mt-3'></p>
+                </h1>
+            <br>
+        {% comment %} {% load crispy_forms_tags %} {% endcomment %}
+            <form action="" method="post" class='mx-auto' style="width: 66rem;">
+                {% csrf_token %} {# token para evitar incompatibilidad http/https  #}
+                <div class="card mx-auto" style="width: 32rem;background-color:beige">
+                    <div class="card-body my-3" >
+                        <h4 class="card-title text-center">Paciente: <b>{{ user.first_name }} {{ user.last_name }}</b> <br>Doctor: <b>{{ doctor.first_name }} {{ doctor.last_name }}</b><br>Especialidad: <b>{{ doctor.specialty }}</b></h4>
+                <p>*Los campos con asteriscos son obligatorios</p>
+                
+                <label for="exampleFormControlTextarea1">Horas disponibles*</label>
+                <select class="form-select" name='fecha' aria-label="Default select example" required>
+                    {% comment %} <option selected></option> {% endcomment %}
+                    {% for f in fechasDisponibles %}
+                    <option value="{{ f.0 }}">{{ f.1 }}</option>
+                    {% endfor %}
+                  </select>
+
+                  <div class="form-group my-3">
+                    <label for="consulta">Razon de la consulta*</label>
+                    <textarea class="form-control " name='comment' id="consulta" placeholder='Dolor de cabeza, de pies, etc..' rows="3" required></textarea>
+                  </div>
+
+                    {% comment %} {{ form|crispy }} {% endcomment %}
+                <div class="text-center">
+                <input class="btn btn-primary rounded-pill mx-2" type="submit" onclick="return confirm('Por favor, confirme para reservar su cita')" value="Reservar">
+                </div>
+            </form>
+        </div>
+    </div>
+            {% else %}
+
+            <h4 class='text-center mt-5'>Para reservar una cita debe <a href={% url 'loginName' %}>iniciar sesion</a>.<br>
+            En caso de tener un usuario puede <a href={% url 'signupPacienteName' %}>registrarse</a></h4>
+            
+
+            {% endif %}
+
+{% endblock 'content' %}

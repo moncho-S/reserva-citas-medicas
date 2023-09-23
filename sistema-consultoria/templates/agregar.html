@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+            Agregar doctores
+{% endblock 'title' %}
+            {% block 'content' %}
+            <h1 class='text-center mt-3'></h1>
+            
+            {% if user.is_superuser %}
+        {% comment %} {% load crispy_forms_tags %} {% endcomment %}
+            <form action="" method="post" class='mx-auto' style="width: 40%;">
+                {% csrf_token %} {# token para evitar incompatibilidad http/https  #}
+
+                <div class="card mx-auto" style="width: 100%;background-color:beige;">
+                    <div class="card-body my-3 text-center" >
+                        <h2 class="card-title">Ingreso nuevo doctor especialista</h2>
+                        {% if error == 'rut registrado' %}
+                        <div class="alert alert-danger" role="alert">
+                            El RUT ingresado ya se encuentra registrado
+                        </div>
+                        {% elif error == 'rut invalido' %}
+                            <div class="alert alert-danger" role="alert">
+                                El RUT ingresado es invalido
+                            </div>
+                        {% elif error == 'telefono invalido' %}
+                        <div class="alert alert-danger" role="alert">
+                            El telefono ingresado no es valido
+                        </div>
+                        {% endif %}
+                        <p>*Los campos con asteriscos son obligatorios</p>
+                        <hr>
+
+                <div class="form-floating col-11 mb-3 mx-auto">
+                    <input required type="text" class="form-control" name='person_id' id="floatingRut" placeholder="12345678">
+                    <label for="floatingRut" class="form-label">RUT (sin puntos y sin guion)*</label>
+                </div>
+                <div class="input-group mb-4 ">
+                    <div class="form-floating col-5 mx-auto">
+                      <input required type="text"name='first_name'  class="form-control " id="floatingNombre" placeholder="Juan">
+                      <label for="floatingNombre">Nombre*</label>
+                    </div>
+                    <div class="form-floating col-5 mx-auto ">
+                      <input required type="text" name='last_name' class="form-control" id="floatingApellido" placeholder="Perez">
+                      <label for="floatingApellido">Apellido*</label>
+                    </div>
+                  </div>
+                  
+                  <div class="input-group mb-4 ">
+                    <div class="form-floating col-5 mx-auto">
+                      <select required class="form-select" name='city' id ='floatingCiudad' aria-label="Default select example">
+                        {% for c in ciudades %}
+                        <option value="{{c}}">{{c}}</option>
+                        {% endfor %} 
+                    </select>
+                      <label for="floatingCiudad" class="form-label">Ciudad*</label>
+                    </div>
+                    <div class="form-floating col-5 mx-auto">
+                        <select required class="form-select" name='specialty' id ='floatingEspecialidad' aria-label="Default select example">
+                            {% for e in especialidades %}
+                            <option value="{{e}}">{{e}}</option>
+                            {% endfor %} 
+                        </select>
+                        <label for="floatingEspecialidad" class="form-label">Especialidad*</label>
+                    </div>
+                  </div>
+
+                  <div class="form-floating mb-4 col-11 mx-auto">
+                      <input required type="text" name='address1' class="form-control " id="floatingDireccion" placeholder="Avenida 14 depto 15">
+                      <label for="floatingDireccion" class="form-label">Direccion*</label>
+                </div>
+
+
+                  <div class="input-group  ">
+                    <div class="form-floating col-5 mx-auto">
+                        <select required name='gender' class="form-select" id ='floatingGenero' aria-label="Default select example">
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                            <option value="X">Otro/Prefiero no decirlo</option>
+                        </select>
+                        <label for="floatingGenero" class="form-label">Genero</label>
+                    </div>
+                    
+                    <div class="form-floating col-5 mx-auto">
+                      <input required aria-describedby="basic-addon1" type="number" name='phone' class="form-control" id="floatingTelefono" placeholder="name@example.com">
+                      <label for="floatingTelefono" class="form-label">Telefono* (Ej: 912345678)</label>
+                   </div>
+                  </div>
+
+                
+                </div>
+
+                <input type="submit" class="btn btn-primary mb-3 mx-auto " value="Registrar doctor">
+            </form>
+        </div>
+    </div>
+            {% else %}
+
+            <h4 class='text-center'>Para agregar mas doctores a la base de datos debe ser un superusuario</h4>
+            
+
+            {% endif %}
+
+{% endblock 'content' %}

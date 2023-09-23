@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+            How to use
+{% endblock 'title' %}
+
+            {% block 'content' %}
+            <div class="mx-4">
+                <span style="background-color:yellow">Superusuario (<b>username</b>: admin@admin.com, <b>password</b>: superuser99)</span><br>
+                <h1 class='text-center mt-3'>Como usar sistema de citas medicas (demo)</h1>
+                <h4 class='text-center my-3'>Sistema de demostracion para la reserva de horas medicas con doctores especialistas.<br>
+                    
+                
+            </h4>
+            <p class='text-center'>El <b>superusuario puede agregar mas doctores</b> a la base de datos y hacer <b>reservas</b> de horas<br><br>
+                Las personas pueden <b>registrarse</b> como <b>pacientes</b> para <b>reservar</b> horas medicas con los doctores <br><br>
+                El <b>superusuario</b> puede <b>ver</b> las citas medicas de <b>todos</b> los pacientes, <b>confirmarlas</b> (cita medica terminada) o <b>eliminarlas</b> si lo desea <br>
+                En cambio, un <b>paciente</b> solo puede <b>ver</b> solo sus horas medicas y <b>eliminar</b> en caso de necesitarlo</p>
+            
+            </div>
+        
+        {% endblock 'content' %}

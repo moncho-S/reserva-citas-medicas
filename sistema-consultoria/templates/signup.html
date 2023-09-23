@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+    Registro de pacientes
+{% endblock 'title' %}
+
+
+{% block 'content' %}
+
+    {% comment %} {% load crispy_forms_tags %} {% endcomment %}
+    <div class='container py-4 text-center'>
+      {% if not user.is_authenticated %}
+      {% comment %} {% load crispy_forms_tags %} {% endcomment %}
+        <form method="POST">
+          {% csrf_token %}
+          <div class="card mx-auto" style="width: 42rem; background-color:beige;">
+            
+            <div class="card-body my-1" >
+
+                {% include "companyheader.html" %}
+
+              <h1 class="card-title" style='margin-top:5rem'>Registro de pacientes</h1>
+              {% if error == "contrasena no es igual" %}
+              <div class="alert alert-warning" role="alert">
+                La contraseña ingresada no es la misma
+              </div>
+              {% elif error == 'correo existente' %}
+              <div class="alert alert-warning" role="alert">
+                Este correo ya se encuentra ingresado
+              </div>
+              {% elif error == 'telefono invalido' %}
+              <div class="alert alert-warning" role="alert">
+                El telefono ingresado no es valido
+              </div>
+              {% endif %}
+              <p>*Los campos con asteriscos son obligatorios</p>
+              <hr>
+
+              <div class="input-group mb-4 ">
+                <div class="form-floating col-5 mx-auto">
+                  <input required type="text"name='firstname'  class="form-control " id="floatingNombre" placeholder="Juan">
+                  <label for="floatingNombre">Nombre*</label>
+                </div>
+                <div class="form-floating col-5 mx-auto ">
+                  <input required type="text" name='lastname' class="form-control" id="floatingApellido" placeholder="Perez">
+                  <label for="floatingApellido">Apellido*</label>
+                </div>
+              </div>
+
+              <div class="input-group mb-4 ">
+                <div class="form-floating col-5 mx-auto">
+                  <input required type="password" name='password' class="form-control " id="floatingContrasena1" placeholder="name@example.com">
+                  <label for="floatingContrasena1" class="form-label">Contraseña*</label>
+                </div>
+                <div class="form-floating col-5 mx-auto">
+                  <input required type="password" name='passwordRepeat' class="form-control" id="floatingContrasena2" placeholder="name@example.com">
+                  <label for="floatingContrasena2" class="form-label">Repetir contraseña*</label>
+                </div>
+              </div>
+
+                <div class="form-floating col-11 mb-3 mx-auto">
+                  <input required type="email" class="form-control" name='mail' id="floatingEmail" placeholder="juan@perez.com">
+                  <label for="floatingEmail" class="form-label">Correo electronico*</label>
+                </div>
+
+                <div class="input-group mb-4 ">
+                  <div class="form-floating col-5 mx-auto">
+                    <input required type="text" name='address' class="form-control " id="floatingDireccion" placeholder="name@example.com">
+                    <label for="floatingDireccion" class="form-label">Direccion*</label>
+                  </div>
+                  <div class="form-floating col-5 mx-auto">
+                    <input required aria-describedby="basic-addon1" type="number" name='phone' class="form-control" id="floatingTelefono" placeholder="name@example.com">
+                    <label for="floatingTelefono" class="form-label">Telefono* (Ej: 912345678)</label>
+                  </div>
+                </div>
+                  <div class='d-grid gap-2 col-3 mx-auto'>
+                    <button href="{% url 'loginName' %}" class="btn btn-primary" type="submit">Registrarse</button>
+                  </div>
+                  </div>
+              </div>
+        </form>
+        {% else %}
+        <h1 class='text-center mt-3'>Usted ya inició sesión</h1>
+        <p class="text-center">
+            Si quiere cerrar su sesión, haga click <a href={% url 'logoutName' %}>aqui</a> 
+        </p>
+        {% endif %}
+    </div>
+{% endblock %}

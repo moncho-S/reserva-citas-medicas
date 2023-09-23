@@ -1,0 +1,33 @@
+body {
+    background-color: #F1F1F1;
+}
+
+
+.table {
+    width: 100%;
+}
+
+li a:hover {
+    background-color: #D3E5EB;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+
+}
+
+#logo:hover {
+    background-color: none;
+}
+
+.password-container {
+    width: auto;
+    position: relative;
+}
+.eye-icon {
+    position: absolute;
+    right: 23px;
+    top:22px;
+}
+.fondo-inputs {
+    background-color: #F1F1F1;
+}
