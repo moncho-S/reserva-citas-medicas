@@ -1,14 +1,22 @@
+:root {
+    --background: #F1F1F1;
+    --celeste: #CFF4FC;
+  }
+
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background);
 }
 
+footer {
+    background-color: var(--celeste);
 
+}
 .table {
     width: 100%;
 }
 
-li a:hover {
-    background-color: #D3E5EB;
+.buttonHover:hover {
+    background-color: #fff;
     border-radius: 5px;
     text-decoration: none;
     color: black;
@@ -31,3 +39,4 @@ li a:hover {
 .fondo-inputs {
     background-color: #F1F1F1;
 }
+

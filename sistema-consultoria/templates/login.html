@@ -15,11 +15,11 @@
                 <div class="card-body my-3" >
                 <h1 class="card-title">Inicio de sesion</h1>
                 {% if error == 'correo inexistente' %}
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-danger" role="alert">
                         Correo no registrado
                     </div>
                 {% elif error == 'contraseña incorrecta' %}
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-danger" role="alert">
                         Contraseña incorrecta
                     </div>
                 {% endif %}

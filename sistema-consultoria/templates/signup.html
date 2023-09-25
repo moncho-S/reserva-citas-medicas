@@ -20,15 +20,15 @@
 
               <h1 class="card-title" style='margin-top:5rem'>Registro de pacientes</h1>
               {% if error == "contrasena no es igual" %}
-              <div class="alert alert-warning" role="alert">
+              <div class="alert alert-danger" role="alert">
                 La contraseña ingresada no es la misma
               </div>
               {% elif error == 'correo existente' %}
-              <div class="alert alert-warning" role="alert">
+              <div class="alert alert-danger" role="alert">
                 Este correo ya se encuentra ingresado
               </div>
               {% elif error == 'telefono invalido' %}
-              <div class="alert alert-warning" role="alert">
+              <div class="alert alert-danger" role="alert">
                 El telefono ingresado no es valido
               </div>
               {% endif %}
